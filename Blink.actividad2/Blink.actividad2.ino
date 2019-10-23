@@ -40,7 +40,7 @@ void loop() {
       {}                             // wait for a second
       
   t_write = millis();
-  t_top = t_write + 1000;
+  t_top = t_write + 10;
   digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
   while (t_top > millis())
       {}                             // wait for a second
