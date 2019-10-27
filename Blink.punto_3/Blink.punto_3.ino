@@ -22,11 +22,22 @@
 
   http://www.arduino.cc/en/Tutorial/Blink
 */
+ volatile int state = LOW;
+ const int pin = 6; //unico pin que funciona de muchos que probé. "A pin in the ass"
 
+void blink() {
+   state = !state;
+   digitalWrite(LED_BUILTIN, state);
+   Serial.println("LED change");
+}
+ 
 // the setup function runs once when you press reset or power the board
 void setup() {
   // initialize digital pin LED_BUILTIN as an output.
-  pinMode(LED_BUILTIN, OUTPUT);
+  Serial.begin(9600);
+  pinMode(pin, INPUT_PULLUP);
+  //pinMode(LED_BUILTIN, OUTPUT);
+  attachInterrupt(digitalPinToInterrupt(pin), blink, CHANGE);
 }
 // the loop function runs over and over again forever
 void loop() {
@@ -35,13 +46,17 @@ void loop() {
   
   t_write = millis();
   t_top= t_write + 1000;
-  digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
+  digitalWrite(pin, HIGH); 
+  //digitalWrite(LED_BUILTIN, HIGH);
+  Serial.println("pin ON");
   while (t_top > millis())
       {}                             // wait for a second
       
   t_write = millis();
   t_top = t_write + 1000;
-  digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
+  digitalWrite(pin, LOW);
+  //digitalWrite(LED_BUILTIN, LOW);
+  Serial.println("pin OFF"); 
   while (t_top > millis())
       {}                             // wait for a second
 }
