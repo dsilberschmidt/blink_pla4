@@ -23,7 +23,7 @@
   http://www.arduino.cc/en/Tutorial/Blink
 */
  volatile int state = LOW;
- const int pin = 6; //unico pin que funciona de muchos que probé. "A pin in the ass"
+ const int pin = A1; //unico pin que funciona de muchos que probé. "A pin in the ass"
 
 void blink() {
    state = !state;
@@ -35,7 +35,7 @@ void blink() {
 void setup() {
   // initialize digital pin LED_BUILTIN as an output.
   Serial.begin(9600);
-  pinMode(pin, INPUT_PULLUP);
+  pinMode(pin,INPUT);
   //pinMode(LED_BUILTIN, OUTPUT);
   attachInterrupt(digitalPinToInterrupt(pin), blink, CHANGE);
 }
