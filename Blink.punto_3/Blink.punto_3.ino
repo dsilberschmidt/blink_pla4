@@ -23,7 +23,7 @@
   http://www.arduino.cc/en/Tutorial/Blink
 */
  volatile int state = LOW;
- const int pin = A1; //unico pin que funciona de muchos que probé. "A pin in the ass"
+ const int pin = 8 ; //finalmente había un conflicto en Ubuntu con el paquete modemmanager. Quitandolo, funcionan los pines digitales
 
 void blink() {
    state = !state;
